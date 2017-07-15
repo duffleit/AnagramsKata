@@ -1,4 +1,5 @@
 const DefaultWordList = require('./DefaultWordList');
+const WordMap = require('./WordMap');
 
 class AnagramFinder {
   constructor(wordSet) {
@@ -7,16 +8,13 @@ class AnagramFinder {
 
 
   findAnagrams(word) {
-    if (!this.wordMap) this.createWordMap();
-    if (this.wordMap.has(word)) return this.wordMap.get(word);
+    if (!word) return new Set();
 
-    return new Set();
-  }
+    if (!this.wordMap) {
+      this.wordMap = new WordMap(this.wordSet);
+    }
 
-  createWordMap() {
-    this.wordMap = new Map([
-      ['below', new Set(['elbow'])],
-    ]);
+    return this.wordMap.getSetOfAnagrams(word);
   }
 }
 
