@@ -17,6 +17,7 @@ class AnagramFinder {
   }
 
   findAnagrams(word) {
+    if (!word) return '';
     throw new NotImplementedError();
   }
 }

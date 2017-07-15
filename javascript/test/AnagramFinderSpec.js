@@ -1,7 +1,6 @@
 const expect = require('chai').expect;
 
 const AnagramFinder = require('../lib/AnagramFinder');
-const NotImplementedError = require('../lib/NotImplementedError');
 
 describe('AnagramFinder', () => {
   let anagramFinder;
@@ -11,8 +10,10 @@ describe('AnagramFinder', () => {
   });
 
   describe('.findAnagrams()', () => {
-    it('should throw NotImplementedError', () => {
-      expect(() => anagramFinder.findAnagrams()).to.throw(NotImplementedError);
+    it('should return empty string when no or an empty word is given', () => {
+      expect(anagramFinder.findAnagrams(null)).to.equal('');
+      expect(anagramFinder.findAnagrams(undefined)).to.equal('');
+      expect(anagramFinder.findAnagrams('')).to.equal('');
     });
   });
 });
