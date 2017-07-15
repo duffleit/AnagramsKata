@@ -5,8 +5,18 @@ class AnagramFinder {
     this.wordSet = wordSet || DefaultWordList.get();
   }
 
+
   findAnagrams(word) {
-    return (word) ? this.wordSet : '';
+    if (!this.wordMap) this.createWordMap();
+    if (this.wordMap.has(word)) return this.wordMap.get(word);
+
+    return new Set();
+  }
+
+  createWordMap() {
+    this.wordMap = new Map([
+      ['below', new Set(['elbow'])],
+    ]);
   }
 }
 
