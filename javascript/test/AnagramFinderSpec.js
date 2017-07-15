@@ -32,6 +32,8 @@ describe('AnagramFinder', () => {
         expect(anagramFinder.findAnagrams('least')).to.include('tesla');
       });
 
+      it('when a anagram for "tesla" is requested, the "tesla" won\'t be returned', () => {
+        expect(anagramFinder.findAnagrams('tesla')).to.have.property('size', 0);
       });
     });
   });

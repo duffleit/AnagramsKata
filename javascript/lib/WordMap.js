@@ -6,9 +6,11 @@ class WordMap {
   getSetOfAnagrams(word) {
     const wordKey = WordMap.getAlphabeticalOrderedString(word);
 
-    return this.map.has(wordKey)
-      ? this.map.get(wordKey)
-      : new Set();
+    const anagrams = this.map.has(wordKey)
+      ? this.map.get(wordKey).filter(w => w !== word)
+      : [];
+
+    return new Set(anagrams);
   }
 
   static initialize(wordSet) {
@@ -18,9 +20,9 @@ class WordMap {
       const wordKey = WordMap.getAlphabeticalOrderedString(word);
 
       if (wordMap.has(wordKey)) {
-        wordMap.get(wordKey).add(word);
+        wordMap.get(wordKey).push(word);
       } else {
-        wordMap.set(wordKey, new Set([word]));
+        wordMap.set(wordKey, [word]);
       }
     });
 
