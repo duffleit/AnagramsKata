@@ -15,5 +15,17 @@ describe('AnagramFinder', () => {
       expect(anagramFinder.findAnagrams(undefined)).to.equal('');
       expect(anagramFinder.findAnagrams('')).to.equal('');
     });
+
+    describe('the wordlist only contains: "elbow"', () => {
+      beforeEach(() => {
+        const wordSet = new Set().add('elbow');
+        anagramFinder = new AnagramFinder(wordSet);
+      });
+
+      it('when an anagram for "below" is requested, then "elbwo" should be returned', () => {
+        expect(anagramFinder.findAnagrams('below')).to.have.property('size', 1);
+        expect(anagramFinder.findAnagrams('below')).to.include('elbow');
+      });
+    });
   });
 });

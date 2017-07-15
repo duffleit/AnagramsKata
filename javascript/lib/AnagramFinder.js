@@ -1,24 +1,12 @@
-const fs = require('fs');
-const path = require('path');
-
-const NotImplementedError = require('./NotImplementedError');
+const DefaultWordList = require('./DefaultWordList');
 
 class AnagramFinder {
-  constructor() {
-    const fileLineBreaks = '\n';
-    const wordListPath = path.join(__dirname, 'wordlist.txt');
-    const fileEncoding = 'utf8';
-
-    const words = fs
-      .readFileSync(wordListPath, fileEncoding)
-      .split(fileLineBreaks);
-
-    this.allTheWords = new Set(words);
+  constructor(wordSet) {
+    this.wordSet = wordSet || DefaultWordList.get();
   }
 
   findAnagrams(word) {
-    if (!word) return '';
-    throw new NotImplementedError();
+    return (word) ? this.wordSet : '';
   }
 }
 
